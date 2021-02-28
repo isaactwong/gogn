@@ -12,6 +12,39 @@ func TestParse(t *testing.T) {
 		ast    *Ast
 	}{
 		{
+			source: "INSERT INTO users VALUES (105, 233)",
+			ast: &Ast{
+				Statements: []*Statement{
+					{
+						Kind: InsertKind,
+						InsertStatement: &InsertStatement{
+							Table: token{
+								loc:   location{col: 12, line: 0},
+								kind:  identifierKind,
+								value: "users",
+							},
+							Values: &[]*expression{
+								{
+									literal: &token{
+										loc:   location{col: 26, line: 0},
+										kind:  numericKind,
+										value: "105",
+									},
+								},
+								{
+									literal: &token{
+										loc:   location{col: 32, line: 0},
+										kind:  numericKind,
+										value: "233",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		{
 			source: "CREATE TABLE users (id INT, name TEXT)",
 			ast: &Ast{
 				Statements: []*Statement{
