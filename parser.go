@@ -252,7 +252,7 @@ func parseInsertStatement(tokens []*token, initialCursor uint, delimiter token) 
 
 	cursor++
 
-	return &InsertStatement{table: *table, values: values}, cursor, true
+	return &InsertStatement{Table: *table, Values: values}, cursor, true
 
 }
 

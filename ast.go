@@ -21,8 +21,8 @@ type Statement struct {
 }
 
 type InsertStatement struct {
-	table  token
-	values *[]*expression
+	Table  token
+	Values *[]*expression
 }
 
 type expressionKind uint

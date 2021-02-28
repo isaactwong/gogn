@@ -66,22 +66,22 @@ func (mb *MemoryBackend) CreateTable(crt *CreateTableStatement) error {
 
 // Insert values into the in-memory table.
 func (mb *MemoryBackend) Insert(inst *InsertStatement) error {
-	table, ok := mb.tables[inst.table.value]
+	table, ok := mb.tables[inst.Table.value]
 	if !ok {
 		return ErrTableDoesNotExist
 	}
 
-	if inst.values == nil {
+	if inst.Values == nil {
 		return nil
 	}
 
 	row := []MemoryCell{}
 
-	if len(*inst.values) != len(table.columns) {
+	if len(*inst.Values) != len(table.columns) {
 		return ErrMissingValues
 	}
 
-	for _, value := range *inst.values {
+	for _, value := range *inst.Values {
 		if value.kind != literalKind {
 			fmt.Println("Skipping non-literal.")
 			continue
